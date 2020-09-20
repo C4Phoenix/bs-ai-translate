@@ -24,5 +24,8 @@ RUN if [ -f "/tmp/conda-tmp/environment.yml" ]; then /opt/conda/bin/conda env up
 RUN /opt/conda/bin/pip install pylint
 
 # [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+    && apt-get -y install --no-install-recommends git-lfs
+
+RUN git lfs install
